@@ -32,6 +32,9 @@ eval $(opam env)
 #build tayzos
 make
 
+#generate identity
+./tezos-node identity generate
+
 #add aliases to profile
 echo "alias betanet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 echo "alias run_node='./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10'" >> ./.profile
@@ -40,5 +43,8 @@ echo "alias run_accuser='./tezos-alpha accuser run'" >> ./.profile
 #reload profile
 source ~/.profile
 
+#pull list of betanet peers
+PEERS=$(curl -s 'http://api5.tzscan.io/v1/network?state=running&p=0&number=50' | grep -Po '::ffff:([0-9.:]+)' | sed ':a;N;$!ba;s/\n/ /g' | sed 's/::ffff:/--peer=/g')
+
 #sync the node
-nohup ./tezos-client --addr 127.0.0.1 --port 8732 &
+nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 $PEERS &

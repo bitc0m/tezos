@@ -38,6 +38,8 @@ make
 #add aliases to profile
 echo "alias betanet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 echo "alias run_node='./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10'" >> ./.profile
+echo "alias run_baker='./tezos-alpha-baker run with local node /home/tezos/.tezos-node <implicit_acct>'" >> ./.profile
+echo "alias run_endorser='./tezos-alpha-endorser run <implicit_acct>'" >> ./.profile
 echo "alias run_accuser='./tezos-alpha accuser run'" >> ./.profile
 
 #reload profile
@@ -48,3 +50,4 @@ PEERS=$(curl -s 'http://api5.tzscan.io/v1/network?state=running&p=0&number=50' |
 
 #sync the node
 nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 $PEERS &
+

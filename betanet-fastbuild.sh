@@ -1,6 +1,6 @@
 #!/bin/sh
 PREFIX=/usr/local/bin
-WORK=$HOME/$(whoami)
+
 
 #download copy of linux opam 2.0.0-rc3 build and save as /usr/local/bin/opam
 sudo curl -o $PREFIX/opam -L https://github.com/ocaml/opam/releases/download/2.0.0-rc3/opam-2.0.0-rc3-x86_64-linux 
@@ -38,12 +38,8 @@ make
 #add aliases to profile
 echo "alias betanet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 
-#reload profile
-source ~/.profile
-
 #pull list of betanet peers
 PEERS=$(curl -s 'http://api5.tzscan.io/v1/network?state=running&p=0&number=50' | grep -Po '::ffff:([0-9.:]+)' | sed ':a;N;$!ba;s/\n/ /g' | sed 's/::ffff:/--peer=/g')
 
 #sync the node
 nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 $PEERS &
-

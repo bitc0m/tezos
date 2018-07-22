@@ -8,6 +8,7 @@ if [ $OS_VER = "xenial" ]; then
   sudo add-apt-repository ppa:ansible/bubblewrap
   sudo add-apt-repository ppa:git-core/ppa
   sudo apt-get update
+  sudo apt-get install -y curl
 fi;
 
 #download copy of linux opam 2.0.0-rc3 build and save as /usr/local/bin/opam
@@ -17,7 +18,7 @@ sudo curl -o $PREFIX/opam -L https://github.com/ocaml/opam/releases/download/2.0
 sudo chmod a+x $PREFIX/opam
 
 #install build essentials
-sudo apt-get install -y curl patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev
+sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev
 
 #initiate Opam
 $PREFIX/opam init -y --compiler=4.06.1

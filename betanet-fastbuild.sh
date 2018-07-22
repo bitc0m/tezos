@@ -2,7 +2,7 @@
 PREFIX=/usr/local/bin
 OS_VER=$(lsb_release -a 2>&1 | grep 'Codename:' | awk '{print $2}')
 
-#prerequistes
+#prerequisites
 sudo apt-get install -y curl
 
 if [ $OS_VER = "xenial" ]; then 

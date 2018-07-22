@@ -2,13 +2,15 @@
 PREFIX=/usr/local/bin
 OS_VER=$(lsb_release -a 2>&1 | grep 'Codename:' | awk '{print $2}')
 
+#prerequistes
+sudo apt-get install -y curl
+
 if [ $OS_VER = "xenial" ]; then 
   echo "OS Version is Xenial. Adding additional repositories."
   #Ubuntu 16.04 repositories
   sudo add-apt-repository ppa:ansible/bubblewrap
   sudo add-apt-repository ppa:git-core/ppa
   sudo apt-get update
-  sudo apt-get install -y curl
 fi;
 
 #download copy of linux opam 2.0.0-rc3 build and save as /usr/local/bin/opam

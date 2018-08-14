@@ -21,7 +21,7 @@ fi;
 sudo chmod a+x $PREFIX/opam
 
 #install build essentials
-sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev
+sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev libgmp3-dev libev-libevent-dev
 
 #initiate Opam
 $PREFIX/opam init -y --compiler=4.06.1

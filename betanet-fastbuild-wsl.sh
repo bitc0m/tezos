@@ -3,6 +3,7 @@ PREFIX=/usr/local/bin
 OS_VER=$(lsb_release -a 2>&1 | grep 'Codename:' | awk '{print $2}')
 
 #prerequisites
+sudo apt-get update
 sudo apt-get install -y curl
 
 if [ $OS_VER = "xenial" ]; then 
@@ -13,14 +14,14 @@ if [ $OS_VER = "xenial" ]; then
   sudo apt-get update
 fi;
 
-#download copy of linux opam 2.0.0-rc3 build and save as /usr/local/bin/opam
-sudo curl -o $PREFIX/opam -L https://github.com/ocaml/opam/releases/download/2.0.0-rc3/opam-2.0.0-rc3-x86_64-linux 
+#download copy of linux opam 2.0.0 (RC4 final) build and save as /usr/local/bin/opam
+/usr/bin/curl "https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh" | bash -s 
 
 #make opam executable
 sudo chmod a+x $PREFIX/opam
 
 #install build essentials
-sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev
+sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-config libhidapi-dev libgmp3-dev libev-libevent-dev
 
 #initiate Opam
 $PREFIX/opam init -y --compiler=4.06.1 --disable-sandboxing

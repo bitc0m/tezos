@@ -30,7 +30,7 @@ $PREFIX/opam init -y --compiler=4.06.1
 eval $(opam env)
 
 #clone the tezos gitlab repo
-git clone -b betanet https://gitlab.com/tezos/tezos.git & wait
+git clone -b mainnet https://gitlab.com/tezos/tezos.git & wait
 { sleep 5; } & wait
 
 cd tezos
@@ -48,9 +48,9 @@ make
 ./tezos-node identity generate
 
 #add aliases to profile
-echo "alias betanet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
+echo "alias mainnet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 
-#pull list of betanet peers
+#pull list of mainnet peers
 PEERS=$(curl -s 'http://api5.tzscan.io/v1/network?state=running&p=0&number=50' | grep -Po '::ffff:([0-9.:]+)' | sed ':a;N;$!ba;s/\n/ /g' | sed 's/::ffff:/--peer=/g')
 
 #sync the node

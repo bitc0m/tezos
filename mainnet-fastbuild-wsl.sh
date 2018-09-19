@@ -25,6 +25,7 @@ sudo apt-get install -y patch unzip make gcc m4 git g++ aspcud bubblewrap pkg-co
 
 #initiate opam - handle WSL environment **TODO: Add warning about running without sandboxing **
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+  sudo apt install ocaml-nox
   $PREFIX/opam init -y --compiler=4.06.1 --disable-sandboxing
 else
   $PREFIX/opam init -y --compiler=4.06.1

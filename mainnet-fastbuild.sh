@@ -15,7 +15,7 @@ if [ $OS_VER = "xenial" ]; then
 fi;
 
 #download copy of linux opam 2.0.0 (RC4 final) build and save as /usr/local/bin/opam
-/usr/bin/curl "https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh" | bash -s 
+/usr/bin/curl "https://raw.githubusercontent.com/ocaml/opam/7385f0b571a2e3dfd31c22deac40dbfee5f405f2/shell/install.sh" | bash -s 
 
 #make opam executable
 sudo chmod a+x $PREFIX/opam

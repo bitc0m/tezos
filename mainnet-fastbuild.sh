@@ -51,4 +51,4 @@ make
 echo "alias mainnet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 
 #sync the node
-nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 $PEERS &
+nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 &

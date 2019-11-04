@@ -50,8 +50,5 @@ make
 #add aliases to profile
 echo "alias mainnet='./tezos-client --addr 127.0.0.1 --port 8732'" >> ~/.profile
 
-#pull list of mainnet peers
-PEERS=$(curl -s 'http://api5.tzscan.io/v1/network?state=running&p=0&number=50' | grep -Po '::ffff:([0-9.:]+)' | sed ':a;N;$!ba;s/\n/ /g' | sed 's/::ffff:/--peer=/g')
-
 #sync the node
 nohup ./tezos-node run --rpc-addr 127.0.0.1:8732 --connections 10 $PEERS &
